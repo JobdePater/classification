@@ -4,7 +4,8 @@
 
 source("R/loadData.R") ##will imideately load data
 source("R/createFigs.R")
-source("R/r2LinMod.R")
+source("R/linMod.R")
+source("R/predictVCF")
 
 
 # Create figures ----------------------------------------------------------
@@ -12,7 +13,13 @@ source("R/r2LinMod.R")
 createFigs(alldata,5000)
 
 
-# Calculate R2 ------------------------------------------------------------
+# Calculate summary statistics of the simple linear models ----------------
+
+# write output to 'out/linMod.rda' 
+mods <- linMod(df) # band 7 has highest R2
 
 
-r2LinMod(df, "VCF", "band1")
+
+# Predict VCF based on band 7 ---------------------------------------------
+
+predictVCF(df, mods[[3]])
