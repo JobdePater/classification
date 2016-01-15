@@ -17,7 +17,9 @@ load("data/GewataB7.rda")
 load("data/vcfGewata.rda")
 
 # Brick data --------------------------------------------------------------
-
+GewataB1[GewataB1 > 1000] <- NA #get rid of extreme values
+GewataB5[GewataB5 > 4000] <- NA
+GewataB7[GewataB7 > 4000] <- NA
 vcfGewata[vcfGewata > 100] <- NA ##values above 100 is probably water
 alldata <- brick(GewataB1, GewataB5, GewataB7, vcfGewata)
 names(alldata) <- c("band1", "band5", "band7", "VCF" )
