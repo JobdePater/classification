@@ -3,4 +3,11 @@
 
 # Function to make predictions of tree cover based on band 7
 
-predictVCF <- function(band = band7, )
+predictVCF <- function(inData = df, model ){
+  
+  originalVCF <- inData$VCF
+  predictVCF  <- predict(model, df)
+  a <- brick(alldata, predictVCF)
+  
+  plot(originalVCF, predictVCF, )
+}
