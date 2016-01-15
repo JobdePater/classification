@@ -5,7 +5,9 @@
 source("R/loadData.R") ##will imideately load data
 source("R/createFigs.R")
 source("R/linMod.R")
-source("R/predictVCF")
+source("R/predictVCF.R")
+source("R/classRMSE.R")
+
 
 
 # Create figures ----------------------------------------------------------
@@ -18,8 +20,10 @@ createFigs(alldata,5000)
 # write output to 'out/linMod.rda' 
 mods <- linMod(df) # band 7 has highest R2
 
-
-
 # Predict VCF based on band 7 ---------------------------------------------
 
-predictVCF(df, mods[[3]])
+predictedVCF <- predictVCF(df, mods[[3]])
+
+# RMSE 
+classRMSE(predictedVCF, GewataB3, GewataB4,
+          trainingPoly)

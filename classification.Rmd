@@ -1,0 +1,50 @@
+---
+title: "classification"
+author: "Gert Sterenborg and Job de Pater"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  knitrBootstrap::bootstrap_document:
+    title: "Advanced Raster Analysis"
+    theme: cosmo
+    menu: FALSE
+---
+
+# Visualization of the relationship 
+Here some plots are given to visualize the relation between the Landsat bands and the VCF tree cover.
+
+```{r, echo=FALSE, fig.align='center'}
+library(png)
+library(grid)
+img <- readPNG("figs/pairs.png")
+grid.raster(img)
+```
+
+# Linear model
+
+Output of the linear models is as follows:
+
+```{r, echo=FALSE}
+library(pander)
+load("out/linMod.rda")
+pander(out)
+```
+
+Based on the coefficient of variation (R2), the forest cover is best predicted by band 7. 
+
+# Predicted vs original tree cover 
+
+The predicted VCF is plotted versus the original VCF data.
+
+```{r, echo=FALSE, fig.align='center'}
+library(png)
+library(grid)
+img <- readPNG("figs/predictedMeasured.png")
+grid.raster(img)
+```
+
+
+# Root mean square error
+
+The root mean square error turned out to be 10.7. The root mean square error was 12.0 for the subclas cropland, 6.7 for forest and 21.7 for the wetland. 
+
+

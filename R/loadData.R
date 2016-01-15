@@ -12,12 +12,21 @@ library(randomForest)
 
 dir.create('data',showWarnings = F)
 load("data/GewataB1.rda")
+load("data/GewataB2.rda")
+load("data/GewataB3.rda")
+load("data/GewataB4.rda")
 load("data/GewataB5.rda")
 load("data/GewataB7.rda")
+load("data/trainingPoly.rda")
 load("data/vcfGewata.rda")
 
 # Brick data --------------------------------------------------------------
+
 GewataB1[GewataB1 > 1000] <- NA #get rid of extreme values
+GewataB2[GewataB2 > 1500] <- NA #get rid of extreme values
+GewataB3[GewataB3 > 1500] <- NA #get rid of extreme values
+GewataB4[GewataB4 > 4500] <- NA #get rid of extreme values
+
 GewataB5[GewataB5 > 4000] <- NA
 GewataB7[GewataB7 > 4000] <- NA
 vcfGewata[vcfGewata > 100] <- NA ##values above 100 is probably water

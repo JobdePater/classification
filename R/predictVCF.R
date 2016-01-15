@@ -7,7 +7,16 @@ predictVCF <- function(inData = df, model ){
   
   originalVCF <- inData$VCF
   predictVCF  <- predict(model, df)
-  a <- brick(alldata, predictVCF)
+ 
+  rmse <- sqrt(mean((originalVCF-predictVCF)^2, na.rm=T))
   
-  plot(originalVCF, predictVCF, )
+  
+  png(filename = 'figs/predictedMeasured.png')
+  plot <-  smoothScatter(originalVCF, predictVCF, 
+                         nrpoints=100, xlim=c(0,100), ylim=c(0,100), 
+                         col=densCols((originalVCF)),
+                         xlab="Original VCF", ylab="Predicted VCF")
+  abline(1,1, col="red")
+  dev.off()
+  return(predictVCF)
 }

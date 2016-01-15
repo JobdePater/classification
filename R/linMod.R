@@ -7,6 +7,7 @@ linMod <- function(inData){
   mod5 <- lm(VCF ~ band5,data=inData)
   mod7 <- lm(VCF ~ band7,data=inData)
   mods <- list(mod1, mod5, mod7)
+  
   printMod <- function(model){
     intercept <- round(summary(model)$coefficients[1])
     slope     <- round(summary(model)$coefficients[2], 2)
